@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인 및 회원가입 페이지</title>
+  <!-- 부트스트랩 CSS 링크 추가 -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          로그인 또는 회원가입
+        </div>
+        <div class="card-body">
+          <!-- 로그인 폼 -->
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="loginUsername">아이디</label>
+              <input type="text" class="form-control" id="loginUsername" placeholder="아이디를 입력하세요">
+            </div>
+            <div class="form-group">
+              <label for="loginPassword">비밀번호</label>
+              <input type="password" class="form-control" id="loginPassword" placeholder="비밀번호를 입력하세요">
+            </div>
+            <button type="submit" class="btn btn-primary">로그인</button>
+          </form>
+          <hr> <!-- 구분선 -->
+          <!-- 회원가입 폼 -->
+          <form id="signupForm" style="display: none;">
+            <div class="form-group">
+              <label for="signupUsername">아이디</label>
+              <input type="text" class="form-control" id="signupUsername" placeholder="아이디를 입력하세요">
+            </div>
+            <div class="form-group">
+              <label for="signupEmail">이메일 주소</label>
+              <input type="email" class="form-control" id="signupEmail" placeholder="이메일을 입력하세요">
+            </div>
+            <div class="form-group">
+              <label for="signupPassword">비밀번호</label>
+              <input type="password" class="form-control" id="signupPassword" placeholder="비밀번호를 입력하세요">
+            </div>
+            <button type="submit" class="btn btn-success">회원가입</button>
+          </form>
+        </div>
+        <div class="card-footer">
+          <small>계정이 없으신가요? <a href="#" id="toggleSignup">회원가입</a></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 로그인 모달 -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="inputEmail">아이디</label>
+            <input type="text" class="form-control" id="loginModalUsername" placeholder="아이디를 입력하세요">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">비밀번호</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호를 입력하세요">
+          </div>
+          <button type="submit" class="btn btn-primary">로그인</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 회원가입 모달 -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signupModalLabel">회원가입</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="signupUsername">아이디</label>
+            <input type="text" class="form-control" id="signupUsername" placeholder="아이디를 입력하세요">
+          </div>
+          <div class="form-group">
+            <label for="signupEmail">이메일 주소</label>
+            <input type="email" class="form-control" id="signupEmail" placeholder="이메일을 입력하세요">
+          </div>
+          <div class="form-group">
+            <label for="signupPassword">비밀번호</label>
+            <input type="password" class="form-control" id="signupPassword" placeholder="비밀번호를 입력하세요">
+          </div>
+          <button type="submit" class="btn btn-primary">회원가입</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 부트스트랩 JS 및 jQuery 추가 -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  // 로그인 폼 제출 이벤트
+  $('#loginForm').submit(function(e){
+    e.preventDefault(); // 폼 제출 기본 동작 방지
+    // 여기에 로그인 처리 코드를 작성하세요.
+    // 아이디: $('#loginUsername').val(), 비밀번호: $('#loginPassword').val() 로 접근 가능합니다.
+    alert('로그인 폼이 제출되었습니다.');
+  });
+
+  // 회원가입 폼 제출 이벤트
+  $('#signupForm').submit(function(e){
+    e.preventDefault(); // 폼 제출 기본 동작 방지
+    // 여기에 회원가입 처리 코드를 작성하세요.
+    // 아이디: $('#signupUsername').val(), 이메일: $('#signupEmail').val(), 비밀번호: $('#signupPassword').val() 로 접근 가능합니다.
+    alert('회원가입 폼이 제출되었습니다.');
+  });
+
+  // 회원가입 폼 토글 기능
+  $('#toggleSignup').click(function(){
+    $('#loginForm').toggle();
+    $('#signupForm').toggle();
+    return false; // 링크 기본 동작 방지
+  });
+</script>
+
+</body>
+</html>

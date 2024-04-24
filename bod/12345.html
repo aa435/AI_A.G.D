@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 인디자인 서비스</title>
+    <!-- 부트스트랩 CDN 링크 -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 버튼의 활성화된 상태에 대한 스타일 */
+        .btn-secondary.active,
+        .btn-secondary:active,
+        .btn-secondary:focus,
+        .btn-secondary:hover {
+            background-color: #007bff; /* 활성 상태일 때 배경색을 더 선명한 파란색으로 변경 */
+            border-color: #007bff; /* 활성 상태일 때 테두리 색상을 동일하게 설정 */
+        }
+
+        /* 버튼의 비활성화된 상태에 대한 스타일 */
+        .btn-secondary:not(.active) {
+            background-color: #0487fa; /* 비활성 상태일 때 배경색을 조금 어두운 회색으로 변경 */
+            border-color: #0084f8; /* 비활성 상태일 때 테두리 색상을 동일하게 설정 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="AI 서비스와 함께 디자인하기">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">생성</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        이미지 개수: 
+                    </label>
+                    <label class="btn btn-secondary">
+                        1 <input type="radio" name="imageOptions" id="imageOption1" checked>
+                    </label>
+                    <label class="btn btn-secondary">
+                        2 <input type="radio" name="imageOptions" id="imageOption2">
+                    </label>
+                    <label class="btn btn-secondary">
+                        3 <input type="radio" name="imageOptions" id="imageOption3">
+                    </label>
+                </div>
+                <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        화면 비율: 
+                    </label>
+                    <label class="btn btn-secondary">
+                        1:1 <input type="radio" name="options" id="option1" checked>
+                    </label>
+                    <label class="btn btn-secondary">
+                        2:3 <input type="radio" name="options" id="option2">
+                    </label>
+                    <label class="btn btn-secondary">
+                        3:2 <input type="radio" name="options" id="option3">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 부트스트랩 및 jQuery를 위한 CDN 링크 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

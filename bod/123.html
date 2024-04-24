@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 그림 검색</title>
+  <!-- 부트스트랩 CSS 링크 추가 -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 아이콘 CSS 링크 추가 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <!-- 123.css 링크 추가 -->
+  <link href="123.css" rel="stylesheet">
+  <style>
+    /* body에 height 속성 추가하여 스크롤 길이 늘리기 */
+    body {
+      height: 5000vh; /* 예시로 높이를 두 배로 설정했습니다. */
+    }
+  </style>
+</head>
+<body style="overflow-y: scroll;"> <!-- 스크롤 생성 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">A.G.D</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="123.html">홈페이지</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            장르 선택
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">인물</a>
+            <a class="dropdown-item" href="#">풍경</a>
+            <a class="dropdown-item" href="#">정물</a>
+            <!-- 다른 장르도 필요에 따라 추가할 수 있습니다 -->
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0 mr-3">
+        <input class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+      </form>
+      <button class="btn btn-primary mr-3" id="createBtn">생성</button>
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-coins"></i> coin : 5
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#freeCoinModal">광고 시청으로 무료 코인 충전</a>
+        </div>
+      </div>
+      <!-- 구독 상태를 표시하는 영역 -->
+      <span id="subscriptionStatus" class="ml-2">구독</span>
+      <a class="nav-link" href="https://discord.com/" target="_blank"><i class="fab fa-discord"></i> 디스코드</a>
+      <button class="btn btn-light ml-3" id="loginBtn">로그인</button>
+      <!-- 회원가입 버튼 -->
+      <button class="btn btn-light ml-3" id="signupBtn">회원가입</button>
+    </div>
+  </div>
+</nav>
+
+<!-- 광고 모달 -->
+<div class="modal fade" id="freeCoinModal" tabindex="-1" role="dialog" aria-labelledby="freeCoinModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="freeCoinModalLabel">광고를 시청하여 무료 코인 충전</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="advertisement">
+                    <h5>광고 1</h5>
+                    <p>광고 내용...</p>
+                    <button type="button" class="btn btn-primary claim-coins" data-coin-amount="10">광고 시청 및 10 코인 충전</button>
+                </div>
+                <div class="advertisement">
+                    <h5>광고 2</h5>
+                    <p>광고 내용...</p>
+                    <button type="button" class="btn btn-primary claim-coins" data-coin-amount="15">광고 시청 및 15 코인 충전</button>
+                </div>
+                <div class="advertisement">
+                    <h5>광고 3</h5>
+                    <p>광고 내용...</p>
+                    <button type="button" class="btn btn-primary claim-coins" data-coin-amount="20">광고 시청 및 20 코인 충전</button>
+                </div>
+                <div class="advertisement">
+                    <h5>광고 4</h5>
+                    <p>광고 내용...</p>
+                    <button type="button" class="btn btn-primary claim-coins" data-coin-amount="25">광고 시청 및 25 코인 충전</button>
+                </div>
+                <div class="advertisement">
+                    <h5>광고 5</h5>
+                    <p>광고 내용...</p>
+                    <button type="button" class="btn btn-primary claim-coins" data-coin-amount="30">광고 시청 및 30 코인 충전</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 이미지 추가 -->
+<div class="row">
+  <div class="col">
+    <img src="file:///C:/Users/ezen/Pictures/placeholder_image.jpg" alt="그림" class="img-fluid" style="width: 100%;">
+  </div>
+</div>
+
+<!-- 로그인 모달 -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">로그인</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="loginUsername">아이디</label>
+            <input type="text" class="form-control" id="loginUsername" placeholder="아이디를 입력하세요">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">비밀번호</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호를 입력하세요">
+          </div>
+          <button type="submit" class="btn btn-primary">로그인</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 회원가입 모달 -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signupModalLabel">회원가입</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="signupUsername">아이디</label>
+            <input type="text" class="form-control" id="signupUsername" placeholder="아이디를 입력하세요">
+          </div>
+          <div class="form-group">
+            <label for="signupEmail">이메일 주소</label>
+            <input type="email" class="form-control" id="signupEmail" placeholder="이메일을 입력하세요">
+          </div>
+          <div class="form-group">
+            <label for="signupPassword">비밀번호</label>
+            <input type="password" class="form-control" id="signupPassword" placeholder="비밀번호를 입력하세요">
+          </div>
+          <button type="submit" class="btn btn-success">회원가입</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="gallery">
+  <div class="card">
+    <img src="ai1.png" alt="Image 1" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">AI 사진 얼굴 스왑</h5>
+      <p class="card-text">이미지속 얼굴을 변경해드립니다.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="ai2.PNG" alt="Image 2" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">AI 화질 높이기</h5>
+      <p class="card-text">이미지 화질을 높여드립니다.</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="AI3.PNG" alt="Image 2" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">AI 비디오 얼굴 스왑</h5>
+      <p class="card-text">비디오속 얼굴을 변경해드립니다</p>
+    </div>
+  </div>
+  <div class="card">
+    <video width="100%" controls loop>
+      <source src="AI42.mp4" type="video/mp4">
+    </video>
+    <div class="card-body">
+      <h5 class="card-title">AI 비디오 만들기</h5>
+      <p class="card-text">비디오를 생성해 드립니다.</p>
+    </div>
+  </div>
+   
+  <!-- 추가 이미지들을 위한 card 요소들을 이어서 작성합니다. -->
+</div>
+
+<!-- 부스트스트랩 JS 링크 추가 (선택사항) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Font Awesome 아이콘 JS 링크 추가 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+<script>
+  // 로그인 버튼 클릭 시 로그인 모달 표시
+  $('#loginBtn').click(function(){
+    $('#loginModal').modal('show');
+  });
+
+  // 회원가입 버튼 클릭 시 회원가입 모달 표시
+  $('#signupBtn').click(function(){
+    $('#signupModal').modal('show');
+  });
+
+  // 생성 버튼 클릭 시 12345.html로 이동
+  $('#createBtn').click(function(){
+    window.location.href = '12345.html';
+  });
+
+  // 광고 모달 열기
+  $('#advertisementModalLink').click(function(){
+    $('#advertisementModal').modal('show');
+  });
+
+  // 구독 상태를 확인하는 함수 (임의로 true/false 반환)
+  function checkSubscriptionStatus() {
+    // 여기에서 실제로 사용자의 구독 상태를 확인하는 로직을 추가하세요
+    // 예시로 임의로 true/false를 반환합니다.
+    return Math.random() < 0.5; // 50% 확률로 true 또는 false 반환
+  }
+
+  // 페이지가 로드될 때 구독 상태를 확인하여 표시
+  $(document).ready(function(){
+    var isSubscribed = checkSubscriptionStatus(); // 구독 상태 확인
+    var subscriptionStatusElement = $('#subscriptionStatus');
+    if (isSubscribed) {
+      subscriptionStatusElement.text('구독중').addClass('text-success');
+    } else {
+      subscriptionStatusElement.text('비구독').addClass('text-danger');
+    }
+  });
+</script>
+
+</body>
+</html>
